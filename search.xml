@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>hexo g 生成空白文件问题</title>
+    <url>/2020/08/16/hexo-g-%E7%94%9F%E6%88%90%E7%A9%BA%E7%99%BD%E6%96%87%E4%BB%B6%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>最近换了新电脑，重新整环境的时候图快，下载<code>node</code>的时候下载的是最新版：node当前版14.0.0。然后安装<code>hexo</code>，从github拉取hexo博客项目，然后跑<code>npm install</code>，都没啥问题。但是在项目下面执行任何<code>hexo</code>的命令的时候，就会出现一个错误：</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">(<span class="keyword">node</span><span class="title">:62227</span>) Warning: Accessing non-existent <span class="keyword">property</span><span class="title"> </span>'lineno' of module exports inside circular dependency</span><br><span class="line">(Use `<span class="keyword">node</span> <span class="title">--trace-warnings</span> ...` to show where the warning was created)</span><br><span class="line">(<span class="keyword">node</span><span class="title">:62227</span>) Warning: Accessing non-existent <span class="keyword">property</span><span class="title"> </span>'column' of module exports inside circular dependency</span><br><span class="line">(<span class="keyword">node</span><span class="title">:62227</span>) Warning: Accessing non-existent <span class="keyword">property</span><span class="title"> </span>'filename' of module exports inside circular dependency</span><br><span class="line">(<span class="keyword">node</span><span class="title">:62227</span>) Warning: Accessing non-existent <span class="keyword">property</span><span class="title"> </span>'lineno' of module exports inside circular dependency</span><br><span class="line">(<span class="keyword">node</span><span class="title">:62227</span>) Warning: Accessing non-existent <span class="keyword">property</span><span class="title"> </span>'column' of module exports inside circular dependency</span><br><span class="line">(<span class="keyword">node</span><span class="title">:62227</span>) Warning: Accessing non-existent <span class="keyword">property</span><span class="title"> </span>'filename' of module exports inside circular dependency</span><br><span class="line">(<span class="keyword">node</span><span class="title">:62227</span>) Warning: Accessing non-existent <span class="keyword">property</span><span class="title"> </span>'lineno' of module exports inside circular dependency</span><br><span class="line">(<span class="keyword">node</span><span class="title">:62227</span>) Warning: Accessing non-existent <span class="keyword">property</span><span class="title"> </span>'column' of module exports inside circular dependency</span><br><span class="line">(<span class="keyword">node</span><span class="title">:62227</span>) Warning: Accessing non-existent <span class="keyword">property</span><span class="title"> </span>'filename' of module exports inside circular dependency</span><br><span class="line">(<span class="keyword">node</span><span class="title">:62227</span>) Warning: Accessing non-existent <span class="keyword">property</span><span class="title"> </span>'lineno' of module exports inside circular dependency</span><br><span class="line">(<span class="keyword">node</span><span class="title">:62227</span>) Warning: Accessing non-existent <span class="keyword">property</span><span class="title"> </span>'column' of module exports inside circular dependency</span><br><span class="line">(<span class="keyword">node</span><span class="title">:62227</span>) Warning: Accessing non-existent <span class="keyword">property</span><span class="title"> </span>'filename' of module exports inside circular dependency</span><br></pre></td></tr></table></figure>
+<p>继续跑<code>hexo s</code>、<code>hexo clean</code>、<code>hexo g</code>都是可以的，也没报错。</p>
+<p>当我跑<code>hexo s</code>的时候是可以正常预览的。</p>
+<p>但是当我跑<code>hexo g</code>的时候，命令可以跑而且没报错，但是生成的文件是<code>0kb</code>的，<code>/public/index.html</code>里面没有任何内容。</p>
+<p>找了好久原因，发现是node版本的问题。</p>
+<p>下<code>n</code>来管理node的版本。</p>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line">$ sudo <span class="built_in">npm</span> i -g n</span><br></pre></td></tr></table></figure>
+<p>然后将node替换为稳定版：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo n stable</span><br></pre></td></tr></table></figure>
+<p>然后查看node的版本：</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">$ <span class="keyword">node</span> <span class="title">-v</span></span><br><span class="line">v12.<span class="number">18.3</span></span><br></pre></td></tr></table></figure>
+<p>先清理，然后再生成：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo clean</span><br><span class="line"><span class="variable">$ </span>hexo g</span><br></pre></td></tr></table></figure>
+<p>然后产看生成的<code>public</code>文件夹中<code>index.html</code>的大小，是有内容的。正常生成了 -。-</p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>踩坑</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vuex页面刷新数据丢失的解决办法</title>
     <url>/2020/08/15/vuex%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
     <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>在vue项目中用vuex来做全局的状态管理， 发现当刷新网页后，保存在vuex实例store里的数据会丢失。</p>
