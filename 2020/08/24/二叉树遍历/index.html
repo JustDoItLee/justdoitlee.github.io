@@ -76,7 +76,7 @@
 
 
 
-  <meta name="keywords" content="Cordova,">
+  <meta name="keywords" content="leetcode,">
 
 
 
@@ -87,18 +87,20 @@
 
 
 
-<meta name="description" content="为了把我的练琴记录仪改成多用户App，我需要做一个Weibo OAuth功能，因为练琴记录仪是Single Page App，我不愿意直接跳转到OAuth页面，那样会打断我的应用状态，于是我打算打开一个新窗口来完成OAuth。 这样一来，问题自然就转换为跨窗口通讯问题了。">
-<meta name="keywords" content="Cordova">
+<meta name="description" content="二叉树的先序、中序、后序遍历">
+<meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cordova中与inBrowser的通讯">
-<meta property="og:url" content="http://justdoitlee.github.io/2017/02/18/Browser的通讯”/index.html">
+<meta property="og:title" content="二叉树遍历">
+<meta property="og:url" content="http://justdoitlee.github.io/2020/08/24/二叉树遍历/index.html">
 <meta property="og:site_name" content="李智‘Blog">
-<meta property="og:description" content="为了把我的练琴记录仪改成多用户App，我需要做一个Weibo OAuth功能，因为练琴记录仪是Single Page App，我不愿意直接跳转到OAuth页面，那样会打断我的应用状态，于是我打算打开一个新窗口来完成OAuth。 这样一来，问题自然就转换为跨窗口通讯问题了。">
+<meta property="og:description" content="二叉树的先序、中序、后序遍历">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-08-15T14:17:31.877Z">
+<meta property="og:image" content="http://justdoitlee.github.io/2020/08/24/img/treeNode.png">
+<meta property="og:updated_time" content="2020-08-24T12:44:00.320Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cordova中与inBrowser的通讯">
-<meta name="twitter:description" content="为了把我的练琴记录仪改成多用户App，我需要做一个Weibo OAuth功能，因为练琴记录仪是Single Page App，我不愿意直接跳转到OAuth页面，那样会打断我的应用状态，于是我打算打开一个新窗口来完成OAuth。 这样一来，问题自然就转换为跨窗口通讯问题了。">
+<meta name="twitter:title" content="二叉树遍历">
+<meta name="twitter:description" content="二叉树的先序、中序、后序遍历">
+<meta name="twitter:image" content="http://justdoitlee.github.io/2020/08/24/img/treeNode.png">
 
 
 
@@ -128,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://justdoitlee.github.io/2017/02/18/Browser的通讯”/">
+  <link rel="canonical" href="http://justdoitlee.github.io/2020/08/24/二叉树遍历/">
 
 
 
 
 
-  <title>cordova中与inBrowser的通讯 | 李智‘Blog</title>
+  <title>二叉树遍历 | 李智‘Blog</title>
   
 
 
@@ -287,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://justdoitlee.github.io/2017/02/18/Browser的通讯”/">
+    <link itemprop="mainEntityOfPage" href="http://justdoitlee.github.io/2020/08/24/二叉树遍历/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李智">
@@ -304,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">cordova中与inBrowser的通讯</h1>
+          <h1 class="post-title" itemprop="name headline">二叉树遍历</h1>
         
 
         <div class="post-meta">
@@ -316,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-18T21:48:10+08:00">
-                2017-02-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-24T20:31:08+08:00">
+                2020-08-24
               </time>
             
 
@@ -339,8 +341,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/移动开发/" itemprop="url" rel="index">
-                    <span itemprop="name">移动开发</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -376,7 +378,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,195
+                  1,219
                 </span>
               
 
@@ -413,23 +415,44 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>为了把我的练琴记录仪改成多用户App，我需要做一个Weibo OAuth功能，因为练琴记录仪是Single Page App，我不愿意直接跳转到OAuth页面，那样会打断我的应用状态，于是我打算打开一个新窗口来完成OAuth。</p>
-<p>这样一来，问题自然就转换为跨窗口通讯问题了。<br><a id="more"></a><br>窗口间通讯毫无疑问首选是 window.postMessage ，在cordova当中，原生 window.open 是不能用的，官方给的方案是使用 cordova-plugin-inappbrowser 插件所提供的 cordova.InAppBrowser.open(url, target, options) 来取代 window.open ，这两者基本上API差不多一致。</p>
-<p>但是IAB插件所返回的对象并不是真正的 window ，它没有 postMessage 功能，并且在IAB所打开的页面中，也没有 window.opener ，于是只能另辟蹊径，找点不靠谱的挫方法来试试了。</p>
-<p>OAuth基本流程</p>
-<p>OAuth的基本流程这里就不赘述了，简单描述一下</p>
-<p>Client需要授权，把自己（由服务商分配的） client_id ——也称 app key 以及在服务商注册的 redirect_url 拼在一起，让用户去访问服务商的 authorize 地址。<br>服务商会询问用户是否对这个 client_id 授权自己的账号，如果是，会跳转到 redirect_url?code=xxxxxx 。<br>应用的服务端接收到 redirect_url 的访问，用URL参数中的 code 和自己的 client_id 以及 app secret （相当于密码）去请求服务商的 access_token 接口，得到 access_token ，这个就是此应用对于这个用户账号的访问凭条。<br>redirect_url 页面根据应用自身需要把获得的 access_token 传回应用，完成授权过程。<br>使用 window.open 时的流程</p>
-<p>客户端 var win = window.open(oauth_url) 。<br>完成OAuth授权，跳转到 redirect_url 。<br>在 redirect_url 上，把 access_token 用 window.opener.postMessage 的方式发给应用。<br>应用监听 win 的 onmessage 事件，一旦收到了 access_token 就完成授权，可以 win.close() 了。<br>然后我先把它写成了一个函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">crossWindowViaBrowser</span>(<span class="params">url, target, opts, key, timeout</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> defer = <span class="built_in">Promise</span>.defer()</span><br><span class="line">  <span class="keyword">let</span> resolve = defer.resolve.bind(defer)</span><br><span class="line">  <span class="keyword">let</span> reject = defer.reject.bind(defer)</span><br><span class="line">  <span class="keyword">let</span> promise = defer.promise</span><br><span class="line">  <span class="keyword">let</span> timing</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> win = <span class="built_in">window</span>.open(url, target, utils.buildOpenWindowOptions(opts))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> onMessage = <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> data = e.data || &#123;&#125;</span><br><span class="line">    <span class="keyword">if</span> (data.type === <span class="string">'cross-window'</span> &amp;&amp; data.key === key) &#123;</span><br><span class="line">      parseResult(data.result, resolve, reject)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// close（貌似）没有可用的事件，`win.addEventListener('close')`没用的样子</span></span><br><span class="line">  <span class="comment">// `win.addEventListener`不好用的问题也可能是因为跨域，真是蛋疼啊</span></span><br><span class="line">  <span class="comment">// 于是轮询`closed`属性吧</span></span><br><span class="line">  <span class="keyword">let</span> pollingClosed = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (win.closed) &#123;</span><br><span class="line">      reject(<span class="keyword">new</span> <span class="built_in">Error</span>(ErrorType.CANCELED))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, POLLING_INTERVAL)</span><br><span class="line"></span><br><span class="line">  <span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, onMessage, <span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 超时`reject`</span></span><br><span class="line">  <span class="keyword">if</span> (timeout &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    timing = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      reject(<span class="keyword">new</span> <span class="built_in">Error</span>(ErrorType.TIMEOUT))</span><br><span class="line">    &#125;, timeout)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  promise.finally(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// clean up</span></span><br><span class="line">    clearInterval(pollingClosed)</span><br><span class="line">    clearTimeout(timing)</span><br><span class="line">    <span class="built_in">window</span>.removeEventListener(<span class="string">'message'</span>, onMessage)</span><br><span class="line">    win.close()</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> promise</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用 cordova.InAppBrowser.open 时的流程</p>
-<p>客户端 var win = cordova.InAppBrowser.open(oauth_url) 。<br>客户端开始对 win.executeScript 并进行轮询，其内容是尝试读取 localStorage.getItem(key) 。<br>redirect_url 页面把获取到的 access_token 写到 localStorage.setItem(key, access_token) 。<br>客户端一旦轮询到 localStorage.getItem(key) 有值，就可以得到 access_token ，然后就可以 localStorage.removeItem(key) ，完成授权， win.close() 。<br>然后我也单独写了一个函数</p>
-<figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">crossWindowViaCordovaIAB</span><span class="params">(url, target, opts, key, timeout)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> defer = Promise.defer()</span><br><span class="line">  <span class="keyword">let</span> resolve = defer.resolve.bind(defer)</span><br><span class="line">  <span class="keyword">let</span> reject = defer.reject.bind(defer)</span><br><span class="line">  <span class="keyword">let</span> promise = defer.promise</span><br><span class="line">  <span class="keyword">let</span> timing</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> win = cordova.InAppBrowser.open(url, target, utils.buildOpenWindowOptions(opts))</span><br><span class="line">  <span class="comment">// cordova的InAppBrowser没有window.opener对象，只能使用轮询罢。。</span></span><br><span class="line">  <span class="keyword">const</span> code = `(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> key = <span class="string">'$&#123;key&#125;'</span></span><br><span class="line">    <span class="keyword">var</span> data = localStorage.getItem(key)</span><br><span class="line">    <span class="keyword">if</span> (data !== <span class="keyword">null</span>) &#123;</span><br><span class="line">      localStorage.removeItem(key)</span><br><span class="line">      <span class="keyword">return</span> data</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span></span><br><span class="line">  &#125;)()`</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> poll = () =&gt; &#123;</span><br><span class="line">    win.executeScript(&#123; code: code &#125;, ret =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (ret[<span class="number">0</span>] === <span class="keyword">false</span>) &#123;</span><br><span class="line">        <span class="comment">// 等待</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        clearInterval(pollingData)</span><br><span class="line">        parseResult(ret[<span class="number">0</span>], resolve, reject)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> pollingData = setInterval(poll, POLLING_INTERVAL)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 窗口关闭时`reject`</span></span><br><span class="line">  <span class="comment">// 正常流程上面`resolve`后才会`win.close()`，所以这里再`reject`也不会有影响</span></span><br><span class="line">  win.addEventListener(<span class="string">'exit'</span>, e =&gt; &#123;</span><br><span class="line">    reject(<span class="keyword">new</span> Error(ErrorType.CANCELED))</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 超时`reject`</span></span><br><span class="line">  <span class="keyword">if</span> (timeout &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    timing = setTimeout(() =&gt; &#123;</span><br><span class="line">      reject(<span class="keyword">new</span> Error(ErrorType.TIMEOUT))</span><br><span class="line">    &#125;, timeout)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  promise.<span class="keyword">finally</span>(() =&gt; &#123;</span><br><span class="line">    <span class="comment">// clean up</span></span><br><span class="line">    clearInterval(pollingData)</span><br><span class="line">    clearTimeout(timing)</span><br><span class="line">    win.close()</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> promise</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>整合</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">crossWindow</span><span class="params">(<span class="rest_arg">...args</span>)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (window.cordova !== <span class="literal">undefined</span> &amp;&amp; cordova.InAppBrowser !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> crossWindowViaCordovaIAB(...args)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> crossWindowViaBrowser(...args)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>服务端</p>
-<p>服务端的Redirect Page我是用PHP写的，涉及到上面的 cross-browser 的部分大概是：</p>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">window.onload = function() </span><span class="xquery">&#123;</span></span><br><span class="line"><span class="xquery">  var<span class="built_in"> key</span> = &lt;?= json_encode(<span class="variable">$key</span>) ?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="xquery">  var result = &lt;?= json_encode(<span class="variable">$output</span>) ?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="xquery">  localStorage.setItem<span class="built_in">(key</span>, result)</span></span><br><span class="line"><span class="xquery">  <span class="keyword">if</span> (<span class="keyword">window</span>.opener) &#123;</span></span><br><span class="line"><span class="xquery">    <span class="keyword">window</span>.opener.postMessage(&#123;</span></span><br><span class="line"><span class="xquery">      type: <span class="string">'cross-window'</span>,</span></span><br><span class="line"><span class="xquery">     <span class="built_in"> key</span>:<span class="built_in"> key</span>,</span></span><br><span class="line"><span class="xquery">      result: result</span></span><br><span class="line"><span class="xquery">    &#125;</span><span class="xml">, '*')</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p>其中 $output 是对 access_token 接口 curl 得到的返回值，虽然微博给的返回值理论上说都是合法的JSON，但出于通用考虑我还是直接把它当字符串传递，让客户端自己在 parse 的时候进行 try/catch ，而且这样对 localStorage 也比较直接。</p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>二叉树的先序、中序、后序遍历</p>
+<a id="more"></a>
+<p><strong>树节点：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    <span class="comment">//左子树</span></span><br><span class="line">    TreeNode left;</span><br><span class="line">    <span class="comment">//右子树</span></span><br><span class="line">    TreeNode right;</span><br><span class="line">    <span class="comment">//构造方法</span></span><br><span class="line">    TreeNode(<span class="keyword">int</span> x) &#123;</span><br><span class="line">        val = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../img/treeNode.png"></p>
+<blockquote>
+<p>先序：1 2 4 6 7 8 3 5<br>中序：4 7 6 8 2 1 3 5<br>后序：7 8 6 4 2 5 3 1</p>
+</blockquote>
+<p><strong>先序：</strong>考察到一个节点后，即刻输出该节点的值，并继续遍历其左右子树。(根左右)</p>
+<p><strong>中序：</strong>考察到一个节点后，将其暂存，遍历完左子树后，再输出该节点的值，然后遍历右子树。(左根右)</p>
+<p><strong>后序：</strong>考察到一个节点后，将其暂存，遍历完左右子树后，再输出该节点的值。(左右根)</p>
+<h4 id="递归先序遍历"><a href="#递归先序遍历" class="headerlink" title="递归先序遍历"></a>递归先序遍历</h4><p>递归先序遍历很容易理解，先输出节点的值，再递归遍历左右子树。中序和后序的递归类似，改变根节点输出位置即可。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归先序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">recursionPreorderTraversal</span>(<span class="params">TreeNode root</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root != <span class="literal">null</span>) &#123;</span><br><span class="line">        System.<span class="keyword">out</span>.print(root.val + <span class="string">" "</span>);</span><br><span class="line">        recursionPreorderTraversal(root.left);</span><br><span class="line">        recursionPreorderTraversal(root.right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="非递归先序遍历"><a href="#非递归先序遍历" class="headerlink" title="非递归先序遍历"></a>非递归先序遍历</h4><p>因为要在遍历完节点的左子树后接着遍历节点的右子树，为了能找到该节点，需要使用<strong>栈</strong>来进行暂存。中序和后序也都涉及到回溯，所以都需要用到<strong>栈</strong>。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 非递归先序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">preorderTraversal</span>(<span class="params">TreeNode root</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// 用来暂存节点的栈</span></span><br><span class="line">    Stack&lt;TreeNode&gt; treeNodeStack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</span><br><span class="line">    <span class="comment">// 新建一个游标节点为根节点</span></span><br><span class="line">    TreeNode node = root;</span><br><span class="line">    <span class="comment">// 当遍历到最后一个节点的时候，无论它的左右子树都为空，并且栈也为空</span></span><br><span class="line">    <span class="comment">// 所以，只要不同时满足这两点，都需要进入循环</span></span><br><span class="line">    <span class="keyword">while</span> (node != <span class="literal">null</span> || !treeNodeStack.isEmpty()) &#123;</span><br><span class="line">        <span class="comment">// 若当前考查节点非空，则输出该节点的值</span></span><br><span class="line">        <span class="comment">// 由考查顺序得知，需要一直往左走</span></span><br><span class="line">        <span class="keyword">while</span> (node != <span class="literal">null</span>) &#123;</span><br><span class="line">            System.<span class="keyword">out</span>.print(node.val + <span class="string">" "</span>);</span><br><span class="line">            <span class="comment">// 为了之后能找到该节点的右子树，暂存该节点</span></span><br><span class="line">            treeNodeStack.push(node);</span><br><span class="line">            node = node.left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 一直到左子树为空，则开始考虑右子树</span></span><br><span class="line">        <span class="comment">// 如果栈已空，就不需要再考虑</span></span><br><span class="line">        <span class="comment">// 弹出栈顶元素，将游标等于该节点的右子树</span></span><br><span class="line">        <span class="keyword">if</span> (!treeNodeStack.isEmpty()) &#123;</span><br><span class="line">            node = treeNodeStack.pop();</span><br><span class="line">            node = node.right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>递归先序遍历： 1 2 4 6 7 8 3 5<br>非递归先序遍历：1 2 4 6 7 8 3 5</p>
+</blockquote>
+<h4 id="递归中序遍历"><a href="#递归中序遍历" class="headerlink" title="递归中序遍历"></a>递归中序遍历</h4><p>过程和递归先序遍历类似</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归中序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">recursionMiddleorderTraversal</span>(<span class="params">TreeNode root</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root != <span class="literal">null</span>) &#123;</span><br><span class="line">        recursionMiddleorderTraversal(root.left);</span><br><span class="line">        System.<span class="keyword">out</span>.print(root.val + <span class="string">" "</span>);</span><br><span class="line">        recursionMiddleorderTraversal(root.right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="非递归中序遍历"><a href="#非递归中序遍历" class="headerlink" title="非递归中序遍历"></a>非递归中序遍历</h4><p>和非递归先序遍历类似，唯一区别是考查到当前节点时，并不直接输出该节点。</p>
+<p>而是当考查节点为空时，从栈中弹出的时候再进行输出(永远先考虑左子树，直到左子树为空才访问根节点)。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 非递归中序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">middleorderTraversal</span>(<span class="params">TreeNode root</span>)</span> &#123;</span><br><span class="line">    Stack&lt;TreeNode&gt; treeNodeStack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</span><br><span class="line">    TreeNode node = root;</span><br><span class="line">    <span class="keyword">while</span> (node != <span class="literal">null</span> || !treeNodeStack.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">while</span> (node != <span class="literal">null</span>) &#123;</span><br><span class="line">            treeNodeStack.push(node);</span><br><span class="line">            node = node.left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!treeNodeStack.isEmpty()) &#123;</span><br><span class="line">            node = treeNodeStack.pop();</span><br><span class="line">            System.<span class="keyword">out</span>.print(node.val + <span class="string">" "</span>);</span><br><span class="line">            node = node.right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>递归中序遍历： 4 7 6 8 2 1 3 5<br>非递归中序遍历：4 7 6 8 2 1 3 5</p>
+</blockquote>
+<h4 id="递归后序遍历"><a href="#递归后序遍历" class="headerlink" title="递归后序遍历"></a>递归后序遍历</h4><p>过程和递归先序遍历类似</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归后序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">recursionPostorderTraversal</span>(<span class="params">TreeNode root</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root != <span class="literal">null</span>) &#123;</span><br><span class="line">        recursionPostorderTraversal(root.left);</span><br><span class="line">        recursionPostorderTraversal(root.right);</span><br><span class="line">        System.<span class="keyword">out</span>.print(root.val + <span class="string">" "</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="非递归后序遍历"><a href="#非递归后序遍历" class="headerlink" title="非递归后序遍历"></a>非递归后序遍历</h4><p>后续遍历和先序、中序遍历不太一样。</p>
+<p>后序遍历在决定是否可以输出当前节点的值的时候，需要考虑其左右子树是否都已经遍历完成。</p>
+<p>所以需要设置一个<strong>lastVisit游标</strong>。</p>
+<p>若lastVisit等于当前考查节点的右子树，表示该节点的左右子树都已经遍历完成，则可以输出当前节点。</p>
+<p>并把lastVisit节点设置成当前节点，将当前游标节点node设置为空，下一轮就可以访问栈顶元素。</p>
+<p><strong>否者，需要接着考虑右子树，node = node.right。</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 非递归后序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">postorderTraversal</span>(<span class="params">TreeNode root</span>)</span> &#123;</span><br><span class="line">    Stack&lt;TreeNode&gt; treeNodeStack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</span><br><span class="line">    TreeNode node = root;</span><br><span class="line">    TreeNode lastVisit = root;</span><br><span class="line">    <span class="keyword">while</span> (node != <span class="literal">null</span> || !treeNodeStack.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">while</span> (node != <span class="literal">null</span>) &#123;</span><br><span class="line">            treeNodeStack.push(node);</span><br><span class="line">            node = node.left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//查看当前栈顶元素</span></span><br><span class="line">        node = treeNodeStack.peek();</span><br><span class="line">        <span class="comment">//如果其右子树也为空，或者右子树已经访问</span></span><br><span class="line">        <span class="comment">//则可以直接输出当前节点的值</span></span><br><span class="line">        <span class="keyword">if</span> (node.right == <span class="literal">null</span> || node.right == lastVisit) &#123;</span><br><span class="line">            System.<span class="keyword">out</span>.print(node.val + <span class="string">" "</span>);</span><br><span class="line">            treeNodeStack.pop();</span><br><span class="line">            lastVisit = node;</span><br><span class="line">            node = <span class="literal">null</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//否则，继续遍历右子树</span></span><br><span class="line">            node = node.right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>递归后序遍历： 7 8 6 4 2 5 3 1<br>非递归后序遍历：7 8 6 4 2 5 3 1</p>
+</blockquote>
 
       
     </div>
@@ -474,15 +497,15 @@
   </li>
   <li class="post-copyright-link">
     <strong>发布时间：</strong>
-    <a>2017年02月18日 - 21:02</a>
+    <a>2020年08月24日 - 20:08</a>
   </li>
   <li class="post-copyright-link">
     <strong>更新时间：</strong>
-    <a>2020年08月15日 - 22:08</a>
+    <a>2020年08月24日 - 20:08</a>
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://justdoitlee.github.io/2017/02/18/Browser的通讯”/" title="cordova中与inBrowser的通讯">http://justdoitlee.github.io/2017/02/18/Browser的通讯”/</a>
+    <a href="http://justdoitlee.github.io/2020/08/24/二叉树遍历/" title="二叉树遍历">http://justdoitlee.github.io/2020/08/24/二叉树遍历/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -497,7 +520,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Cordova/" rel="tag"># Cordova</a>
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
           
         </div>
       
@@ -510,8 +533,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/18/高级for循环使用remove-add-问题/" rel="next" title="高级for循环使用remove/add 问题">
-                <i class="fa fa-chevron-left"></i> 高级for循环使用remove/add 问题
+              <a href="/2020/08/16/hexo-g-生成空白文件问题/" rel="next" title="hexo g 生成空白文件问题">
+                <i class="fa fa-chevron-left"></i> hexo g 生成空白文件问题
               </a>
             
           </div>
@@ -519,10 +542,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/18/jdk1-8的HashMap和ConcurrentHashMap/" rel="prev" title="jdk1.8的HashMap和ConcurrentHashMap">
-                jdk1.8的HashMap和ConcurrentHashMap <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -574,8 +593,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -653,6 +681,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#递归先序遍历"><span class="nav-number">1.</span> <span class="nav-text">递归先序遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非递归先序遍历"><span class="nav-number">2.</span> <span class="nav-text">非递归先序遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#递归中序遍历"><span class="nav-number">3.</span> <span class="nav-text">递归中序遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非递归中序遍历"><span class="nav-number">4.</span> <span class="nav-text">非递归中序遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#递归后序遍历"><span class="nav-number">5.</span> <span class="nav-text">递归后序遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非递归后序遍历"><span class="nav-number">6.</span> <span class="nav-text">非递归后序遍历</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
