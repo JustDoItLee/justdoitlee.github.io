@@ -95,12 +95,12 @@
 <meta property="og:site_name" content="李智‘Blog">
 <meta property="og:description" content="1.动态规划解题套路框架1234567# 初始化 base casedp[0][0][...] = base# 进行状态转移for 状态1 in 状态1的所有取值：    for 状态2 in 状态2的所有取值：        for ...            dp[状态1][状态2][...] = 求最值(选择1，选择2...) tips: 通过「备忘录」或者「dp table」的方法来优化">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://justdoitlee.github.io/2020/08/31/img/gupiaowenti.png">
-<meta property="og:updated_time" content="2020-09-05T06:54:39.029Z">
+<meta property="og:image" content="http://justdoitlee.github.io/img/gupiaowenti.png">
+<meta property="og:updated_time" content="2020-09-05T07:21:37.879Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法框架">
 <meta name="twitter:description" content="1.动态规划解题套路框架1234567# 初始化 base casedp[0][0][...] = base# 进行状态转移for 状态1 in 状态1的所有取值：    for 状态2 in 状态2的所有取值：        for ...            dp[状态1][状态2][...] = 求最值(选择1，选择2...) tips: 通过「备忘录」或者「dp table」的方法来优化">
-<meta name="twitter:image" content="http://justdoitlee.github.io/2020/08/31/img/gupiaowenti.png">
+<meta name="twitter:image" content="http://justdoitlee.github.io/img/gupiaowenti.png">
 
 
 
@@ -439,7 +439,7 @@
 </blockquote>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dp[<span class="string">i</span>][<span class="symbol">k</span>][<span class="string">0 or 1</span>]</span><br><span class="line">0 <span class="xml"><span class="tag">&lt;<span class="name">=</span> <span class="attr">i</span> &lt;= <span class="string">n-1,</span> <span class="attr">1</span> &lt;= <span class="string">k</span> &lt;= <span class="string">K</span></span></span></span><br><span class="line"><span class="xml">n 为天数，大 K 为最多交易数</span></span><br><span class="line"><span class="xml">此问题共 n × K × 2 种状态，全部穷举就能搞定。</span></span><br><span class="line"></span><br><span class="line"><span class="xml">for 0 <span class="tag">&lt;<span class="name">=</span> <span class="attr">i</span> &lt; <span class="attr">n:</span></span></span></span><br><span class="line"><span class="xml">    for 1 <span class="tag">&lt;<span class="name">=</span> <span class="attr">k</span> &lt;= <span class="string">K:</span></span></span></span><br><span class="line"><span class="xml">        for s in &#123;0, 1&#125;:</span></span><br><span class="line"><span class="xml">            dp[i][k][s] = max(buy, sell, rest)</span></span><br></pre></td></tr></table></figure>
 <p>二、状态转移框架</p>
-<p><img src="../img/gupiaowenti.png"></p>
+<p><img src="/img/gupiaowenti.png"></p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[<span class="string">i</span>][<span class="symbol">k</span>][<span class="string">0</span>] = max(dp[<span class="string">i-1</span>][<span class="symbol">k</span>][<span class="string">0</span>], dp[<span class="string">i-1</span>][<span class="symbol">k</span>][<span class="string">1</span>] + prices[i])</span><br><span class="line"><span class="code">             	max(选择 rest,      选择 sell)</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>今天我没有持有股票，有两种可能：<br>要么是我昨天就没有持有，然后今天选择 rest，所以我今天还是没有持有；<br>要么是我昨天持有股票，但是今天我 sell 了，所以我今天没有持有股票了。</p>
@@ -516,7 +516,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>更新时间：</strong>
-    <a>2020年09月05日 - 14:09</a>
+    <a>2020年09月05日 - 15:09</a>
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
