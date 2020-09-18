@@ -303,6 +303,185 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://justdoitlee.github.io/2020/09/18/动态规划状态压缩/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李智">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李智‘Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/18/动态规划状态压缩/" itemprop="url">动态规划状态压缩</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-18T12:47:21+08:00">
+                2020-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,089
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>动态规划技巧对于算法效率的提升非常可观，一般来说都能把指数级和阶乘级时间复杂度的算法优化成 O(N^2)，但动态规划也是可以进行阶段性优化的，比如说常听说的「状态压缩」技巧，就能够把很多动态规划解法的空间复杂度进一步降低，由 O(N^2) 降低到 O(N)。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/18/动态规划状态压缩/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://justdoitlee.github.io/2020/09/17/dp-数组的遍历方向/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -428,25 +607,20 @@
 
       
         
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p>做动态规划问题时，肯定会对<code>dp</code>数组的遍历顺序有些头疼，拿二维<code>dp</code>数组来举例</p>
+          <p>做动态规划问题时，肯定会对<code>dp</code>数组的遍历顺序有些头疼，拿二维<code>dp</code>数组来举例</p>
 <p>有时候是正向遍历：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int[<span class="string"></span>][<span class="symbol"></span>] dp = new int[<span class="string">m</span>][<span class="symbol">n</span>];</span><br><span class="line">for (int i = 0; i <span class="xml"><span class="tag">&lt; <span class="attr">m</span>; <span class="attr">i</span>++)</span></span></span><br><span class="line"><span class="xml">    for (int j = 0; j <span class="tag">&lt; <span class="attr">n</span>; <span class="attr">j</span>++)</span></span></span><br><span class="line"><span class="xml">        // 计算 dp[i][j]</span></span><br></pre></td></tr></table></figure>
 <p>有时候反向遍历：</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (int i = m - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">    for (int j = n - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--)</span><br><span class="line">        <span class="comment">// 计算 dp[i][j]</span></span><br></pre></td></tr></table></figure>
 <p>有时候可能会斜向遍历：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 斜着遍历数组</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">2</span>; l &lt;= n; l++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n - l; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> j = l + i - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 计算 dp[i][j]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>甚至更让人迷惑的是，有时候发现正向反向遍历都可以得到正确答案。</p>
-<p>仔细观察的话，只要把住两点就行了：</p>
-<p><strong>1、遍历的过程中，所需的状态必须是已经计算出来的</strong>。</p>
-<p><strong>2、遍历的终点必须是存储结果的那个位置</strong>。</p>
-<p>比如编辑距离这个经典的问题，我们通过对<code>dp</code>数组的定义，确定了 base case 是<code>dp[..][0]</code>和<code>dp[0][..]</code>，最终答案是<code>dp[m][n]</code>；而且我们通过状态转移方程知道<code>dp[i][j]</code>需要从<code>dp[i-1][j]</code>,<code>dp[i][j-1]</code>,<code>dp[i-1][j-1]</code>转移而来，如下图：</p>
-<p><img src="/img/dpshuzu.png"></p>
-<p>那么，参考刚才说的两条原则，该怎么遍历<code>dp</code>数组？肯定是正向遍历：</p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 1; i &lt; m; i++)</span><br><span class="line">    for (int j = 1; j &lt; n; j++)</span><br><span class="line">        // 通过 dp<span class="comment">[i-1]</span><span class="comment">[j]</span>, dp<span class="comment">[i]</span><span class="comment">[j - 1]</span>, dp<span class="comment">[i-1]</span><span class="comment">[j-1]</span></span><br><span class="line">        // 计算 dp<span class="comment">[i]</span><span class="comment">[j]</span></span><br></pre></td></tr></table></figure>
-<p><strong>因为，这样每一步迭代的左边、上边、左上边的位置都是 base case 或者之前计算过的，而且最终结束在我们想要的答案<code>dp[m][n]</code>。</strong></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/17/dp-数组的遍历方向/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1982,188 +2156,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://justdoitlee.github.io/2020/09/14/滑动窗口算法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="李智">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="李智‘Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/14/滑动窗口算法/" itemprop="url">滑动窗口算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-14T14:40:33+08:00">
-                2020-09-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  453
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p><a href="https://leetcode.com/problems/minimum-window-substring" target="_blank" rel="noopener">76.最小覆盖子串</a></p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 滑动窗口算法框架 */</span></span><br><span class="line">  void slidingWindow(<span class="type">String</span> s, <span class="type">String</span> t) &#123;</span><br><span class="line">      <span class="type">HashMap</span>&lt;<span class="type">Character</span>, <span class="type">Integer</span>&gt; need, window;</span><br><span class="line">      <span class="keyword">for</span> (char <span class="built_in">c</span> : t.toCharArray()) &#123;</span><br><span class="line">          need.put(<span class="built_in">c</span>, need.getOrDefault(<span class="built_in">c</span>, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      int <span class="keyword">left</span> = <span class="number">0</span>, <span class="keyword">right</span> = <span class="number">0</span>;</span><br><span class="line">      int valid = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">while</span> (<span class="keyword">right</span> &lt; s.length()) &#123;</span><br><span class="line">          <span class="comment">// c 是将移入窗口的字符</span></span><br><span class="line">          char <span class="built_in">c</span> = s.charAt(<span class="keyword">right</span>);</span><br><span class="line">          <span class="comment">// 右移窗口</span></span><br><span class="line">          <span class="keyword">right</span>++;</span><br><span class="line">          <span class="comment">// 进行窗口内数据的一系列更新</span></span><br><span class="line">      		...</span><br><span class="line"></span><br><span class="line">          <span class="comment">/*** debug 输出的位置 ***/</span></span><br><span class="line">          <span class="type">System</span>.out.printf(<span class="string">"window: [%d, %d)\n"</span>, <span class="keyword">left</span>, <span class="keyword">right</span>);</span><br><span class="line">          <span class="comment">/********************/</span></span><br><span class="line"></span><br><span class="line">          <span class="comment">// 判断左侧窗口是否要收缩</span></span><br><span class="line">          <span class="keyword">while</span> (window needs shrink)&#123;</span><br><span class="line">              <span class="comment">// d 是将移出窗口的字符</span></span><br><span class="line">              char d = s.charAt(<span class="keyword">left</span>);</span><br><span class="line">              <span class="comment">// 左移窗口</span></span><br><span class="line">              <span class="keyword">left</span>++;</span><br><span class="line">              <span class="comment">// 进行窗口内数据的一系列更新</span></span><br><span class="line">        		  ...</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
-<p>⏬⏬⏬</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">String</span> minWindow(<span class="type">String</span> s, <span class="type">String</span> t) &#123;</span><br><span class="line">       <span class="type">HashMap</span>&lt;<span class="type">Character</span>, <span class="type">Integer</span>&gt; need = new <span class="type">HashMap</span>&lt;&gt;();</span><br><span class="line">       <span class="type">HashMap</span>&lt;<span class="type">Character</span>, <span class="type">Integer</span>&gt; window = new <span class="type">HashMap</span>&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">Character</span> <span class="built_in">c</span> : t.toCharArray()) &#123;</span><br><span class="line">           need.put(<span class="built_in">c</span>, need.getOrDefault(<span class="built_in">c</span>, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       int <span class="keyword">left</span> = <span class="number">0</span>;</span><br><span class="line">       int <span class="keyword">right</span> = <span class="number">0</span>;</span><br><span class="line">       <span class="comment">//满足need条件的字符个数</span></span><br><span class="line">       int vaild = <span class="number">0</span>;</span><br><span class="line">       <span class="comment">//记录最小覆盖子串的其实索引和长度</span></span><br><span class="line">       int start = <span class="number">0</span>;</span><br><span class="line">       int len = <span class="type">Integer</span>.<span class="type">MAX_VALUE</span>;</span><br><span class="line">       <span class="keyword">while</span> (<span class="keyword">right</span> &lt; s.length()) &#123;</span><br><span class="line">           <span class="comment">//c是即将移入窗口的字符</span></span><br><span class="line">           char <span class="built_in">c</span> = s.charAt(<span class="keyword">right</span>);</span><br><span class="line">           <span class="comment">//右移窗口</span></span><br><span class="line">           <span class="keyword">right</span>++;</span><br><span class="line">           <span class="comment">//进行窗口内数据更新</span></span><br><span class="line">           <span class="keyword">if</span> (need.containsKey(<span class="built_in">c</span>)) &#123;</span><br><span class="line">               window.put(<span class="built_in">c</span>, window.getOrDefault(<span class="built_in">c</span>, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">               <span class="keyword">if</span> (window.<span class="keyword">get</span>(<span class="built_in">c</span>).equals(need.<span class="keyword">get</span>(<span class="built_in">c</span>))) &#123;</span><br><span class="line">                   vaild++;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="comment">//判断左侧窗口是否需要收缩</span></span><br><span class="line">           <span class="keyword">while</span> (vaild == need.size()) &#123;</span><br><span class="line">               <span class="comment">//更新最小覆盖子串</span></span><br><span class="line">               <span class="keyword">if</span> (<span class="keyword">right</span> - <span class="keyword">left</span> &lt; len) &#123;</span><br><span class="line">                   start = <span class="keyword">left</span>;</span><br><span class="line">                   len = <span class="keyword">right</span> - <span class="keyword">left</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="comment">//d是即将移除的字符</span></span><br><span class="line">               char d = s.charAt(<span class="keyword">left</span>);</span><br><span class="line">               <span class="comment">//左移窗口</span></span><br><span class="line">               <span class="keyword">left</span>++;</span><br><span class="line">               <span class="comment">//进行窗口内数据更新</span></span><br><span class="line">               <span class="keyword">if</span> (need.containsKey(d)) &#123;</span><br><span class="line">                   <span class="keyword">if</span> (window.<span class="keyword">get</span>(d).equals(need.<span class="keyword">get</span>(d))) &#123;</span><br><span class="line">                       vaild--;</span><br><span class="line">                   &#125;</span><br><span class="line">                   window.put(d, window.<span class="keyword">get</span>(d) - <span class="number">1</span>);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//返回最小覆盖子串</span></span><br><span class="line">       <span class="keyword">return</span> len == <span class="type">Integer</span>.<span class="type">MAX_VALUE</span> ? <span class="string">""</span> : s.substring(start, start + len);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2211,7 +2208,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-count">71</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2309,7 +2306,7 @@
 </div>
 <div class="theme-info" style="margin-left:20%">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共123.1k字</span>&nbsp&nbsp
+  <span class="post-count">博客全站共125.2k字</span>&nbsp&nbsp
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp
 您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴

@@ -96,7 +96,7 @@
 <meta property="og:description" content="做动态规划问题时，肯定会对dp数组的遍历顺序有些头疼，拿二维dp数组来举例 有时候是正向遍历： 1234int[][] dp = new int[m][n];for (int i = 0; i &amp;lt; m; i++)    for (int j = 0; j &amp;lt; n; j++)        // 计算 dp[i][j] 有时候反向遍历： 123for (int i = m - 1; i">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://justdoitlee.github.io/img/dpshuzu.png">
-<meta property="og:updated_time" content="2020-09-17T05:43:33.163Z">
+<meta property="og:updated_time" content="2020-09-17T09:55:22.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="dp 数组的遍历方向">
 <meta name="twitter:description" content="做动态规划问题时，肯定会对dp数组的遍历顺序有些头疼，拿二维dp数组来举例 有时候是正向遍历： 1234int[][] dp = new int[m][n];for (int i = 0; i &amp;lt; m; i++)    for (int j = 0; j &amp;lt; n; j++)        // 计算 dp[i][j] 有时候反向遍历： 123for (int i = m - 1; i">
@@ -442,6 +442,7 @@
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (int i = m - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">    for (int j = n - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--)</span><br><span class="line">        <span class="comment">// 计算 dp[i][j]</span></span><br></pre></td></tr></table></figure>
 <p>有时候可能会斜向遍历：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 斜着遍历数组</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">2</span>; l &lt;= n; l++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n - l; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> j = l + i - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 计算 dp[i][j]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>甚至更让人迷惑的是，有时候发现正向反向遍历都可以得到正确答案。</p>
 <p>仔细观察的话，只要把住两点就行了：</p>
 <p><strong>1、遍历的过程中，所需的状态必须是已经计算出来的</strong>。</p>
@@ -499,7 +500,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>更新时间：</strong>
-    <a>2020年09月17日 - 13:09</a>
+    <a>2020年09月17日 - 17:09</a>
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
@@ -540,6 +541,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/09/18/动态规划状态压缩/" rel="prev" title="动态规划状态压缩">
+                动态规划状态压缩 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -609,7 +614,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-count">71</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -707,7 +712,7 @@
 </div>
 <div class="theme-info" style="margin-left:20%">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共123.1k字</span>&nbsp&nbsp
+  <span class="post-count">博客全站共125.2k字</span>&nbsp&nbsp
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp
 您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
