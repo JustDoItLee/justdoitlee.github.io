@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>子序列问题</title>
+    <url>/2020/09/29/%E5%AD%90%E5%BA%8F%E5%88%97%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>子序列问题是常见的算法问题，而且并不好解决。</p>
+<p>首先，子序列问题本身就相对子串、子数组更困难一些，因为前者是不连续的序列，而后两者是连续的，就算穷举都不容易，更别说求解相关的算法问题了。</p>
+<p>而且，子序列问题很可能涉及到两个字符串，比如让你求两个字符串的<strong>最长公共子序列</strong>，如果没有一定的处理经验，真的不容易想出来。针对子序列问题的套路，<strong>其实就有两种模板，相关问题只要往这两种思路上想，十拿九稳。</strong></p>
+<p>一般来说，这类问题都是让你求一个<strong>最长</strong>子序列，因为最短子序列就是一个字符嘛，没啥可问的。一旦涉及到子序列和最值，那几乎可以肯定，<strong>考察的是动态规划技巧，时间复杂度一般都是 O(n^2)</strong>。</p>
+<p>原因很简单，你想想一个字符串，它的子序列有多少种可能？起码是指数级的吧，这种情况下，不用动态规划技巧，还想怎么着呢？</p>
+<p>既然要用动态规划，那就要定义 dp 数组，找状态转移关系。我们说的两种思路模板，就是 dp 数组的定义思路。不同的问题可能需要不同的 dp 数组定义来解决。</p>
+<a id="more"></a>
+<p><strong>1.第一种思路模板是一个一维的 dp 数组</strong>：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">int n = array.<span class="built_in">length</span>();</span><br><span class="line">int[] dp = new int[n];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (int <span class="built_in">i</span> = <span class="number">1</span>; <span class="built_in">i</span> &lt; n; <span class="built_in">i</span>++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (int <span class="built_in">j</span> = <span class="number">0</span>; <span class="built_in">j</span> &lt; <span class="built_in">i</span>; <span class="built_in">j</span>++) &#123;</span><br><span class="line">        dp[<span class="built_in">i</span>] = 最值(dp[<span class="built_in">i</span>], dp[<span class="built_in">j</span>] + ...)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>举个例子<strong>最长递增子序列</strong>，在这个思路中 dp 数组的定义是：</p>
+<p><strong>在子数组<code>array[0..i]</code>中，以<em><code>array[i]</code></em>结尾的目标子序列（最长递增子序列）的长度是<code>dp[i]</code></strong>。</p>
+<p><strong>2.第二种思路模板是一个二维的 dp 数组</strong>：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">int n = arr.length();</span><br><span class="line">int[<span class="string"></span>][<span class="symbol"></span>] dp = new dp[<span class="string">n</span>][<span class="symbol">n</span>];</span><br><span class="line"></span><br><span class="line">for (int i = 0; i <span class="xml"><span class="tag">&lt; <span class="attr">n</span>; <span class="attr">i</span>++) &#123;</span></span></span><br><span class="line"><span class="xml">    for (int j = 1; j <span class="tag">&lt; <span class="attr">n</span>; <span class="attr">j</span>++) &#123;</span></span></span><br><span class="line"><span class="xml">        if (arr[i] == arr[j]) </span></span><br><span class="line"><span class="xml">            dp[i][j] = dp[i][j] + ...</span></span><br><span class="line"><span class="xml">        else</span></span><br><span class="line"><span class="xml">            dp[i][j] = 最值(...)</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这种思路运用相对更多一些，尤其是涉及两个字符串/数组的子序列。本思路中 dp 数组含义又分为「只涉及一个字符串」和「涉及两个字符串」两种情况。</p>
+<p><strong>2.1</strong> <strong>涉及两个字符串/数组时</strong>（比如最长公共子序列），dp 数组的含义如下：</p>
+<p><strong>在子数组<code>arr1[0..i]</code>和子数组<code>arr2[0..j]</code>中，我们要求的子序列（最长公共子序列）长度为<code>dp[i][j]</code></strong>。</p>
+<p><strong>2.2</strong> <strong>只涉及一个字符串/数组时</strong>（比如本文要讲的最长回文子序列），dp 数组的含义如下：</p>
+<p><strong>在子数组<code>array[i..j]</code>中，我们要求的子序列（最长回文子序列）的长度为<code>dp[i][j]</code></strong>。</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>最长公共子序列</title>
     <url>/2020/09/27/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/</url>
     <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p><a href="https://leetcode.com/problems/longest-common-subsequence" target="_blank" rel="noopener">1143.最长公共子序列</a></p>
@@ -13,7 +42,8 @@
 <p>让索引为 0 的行和列表示空串，<code>dp[0][..]</code> 和 <code>dp[..][0]</code> 都应该初始化为 0，这就是 base case。</p>
 <p>比如说，按照刚才 dp 数组的定义，<code>dp[0][3]=0</code> 的含义是：对于字符串 <code>&quot;&quot;</code> 和 <code>&quot;bab&quot;</code>，其 LCS 的长度为 0。因为有一个字符串是空串，它们的最长公共子序列的长度显然应该是 0。</p>
 <p><strong>第三步，找状态转移方程。</strong></p>
-<p>这是动态规划最难的一步，不过好在这种字符串问题的套路都差不多，权且借这道题来聊聊处理这类问题的思路。</p>
+<p>这是动态规划最难的一步</p>
+<a id="more"></a>
 <p>状态转移说简单些就是做选择，比如说这个问题，是求 <code>s1</code> 和 <code>s2</code> 的最长公共子序列，不妨称这个子序列为 <code>lcs</code>。那么对于 <code>s1</code> 和 <code>s2</code> 中的每个字符，有什么选择？很简单，两种选择，要么在 <code>lcs</code> 中，要么不在。</p>
 <p><img src="/img/zuichanggonggongzixulie2.png"></p>
 <p>这个「在」和「不在」就是选择，关键是，应该如何选择呢？这个需要动点脑筋：如果某个字符应该在 <code>lcs</code> 中，那么这个字符肯定同时存在于 <code>s1</code> 和 <code>s2</code> 中，因为 <code>lcs</code> 是最长<strong>公共</strong>子序列嘛。所以本题的思路是这样：</p>

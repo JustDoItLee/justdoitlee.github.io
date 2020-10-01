@@ -87,20 +87,20 @@
 
 
 
-<meta name="description" content="1143.最长公共子序列 第一步，一定要明确 dp 数组的含义。对于两个字符串的动态规划问题，套路是通用的。 比如说对于字符串 s1 和 s2，一般来说都要构造一个这样的 DP table：  为了方便理解此表，暂时认为索引是从 1 开始的，待会的代码中只要稍作调整即可。其中，dp[i][j] 的含义是：对于 s1[1..i] 和 s2[1..j]，它们的 LCS 长度是 dp[i][j]。 比">
+<meta name="description" content="1143.最长公共子序列 第一步，一定要明确 dp 数组的含义。对于两个字符串的动态规划问题，套路是通用的。 比如说对于字符串 s1 和 s2，一般来说都要构造一个这样的 DP table：  为了方便理解此表，暂时认为索引是从 1 开始的，待会的代码中只要稍作调整即可。其中，dp[i][j] 的含义是：对于 s1[1..i] 和 s2[1..j]，它们的 LCS 长度是 dp[i][j]。 比如">
 <meta name="keywords" content="动态规划">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最长公共子序列">
 <meta property="og:url" content="http://justdoitlee.github.io/2020/09/27/最长公共子序列/index.html">
 <meta property="og:site_name" content="李智‘Blog">
-<meta property="og:description" content="1143.最长公共子序列 第一步，一定要明确 dp 数组的含义。对于两个字符串的动态规划问题，套路是通用的。 比如说对于字符串 s1 和 s2，一般来说都要构造一个这样的 DP table：  为了方便理解此表，暂时认为索引是从 1 开始的，待会的代码中只要稍作调整即可。其中，dp[i][j] 的含义是：对于 s1[1..i] 和 s2[1..j]，它们的 LCS 长度是 dp[i][j]。 比">
+<meta property="og:description" content="1143.最长公共子序列 第一步，一定要明确 dp 数组的含义。对于两个字符串的动态规划问题，套路是通用的。 比如说对于字符串 s1 和 s2，一般来说都要构造一个这样的 DP table：  为了方便理解此表，暂时认为索引是从 1 开始的，待会的代码中只要稍作调整即可。其中，dp[i][j] 的含义是：对于 s1[1..i] 和 s2[1..j]，它们的 LCS 长度是 dp[i][j]。 比如">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://justdoitlee.github.io/img/zuichanggonggongzixulie.png">
 <meta property="og:image" content="http://justdoitlee.github.io/img/zuichanggonggongzixulie2.png">
-<meta property="og:updated_time" content="2020-09-27T06:10:37.200Z">
+<meta property="og:updated_time" content="2020-09-29T07:12:30.932Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最长公共子序列">
-<meta name="twitter:description" content="1143.最长公共子序列 第一步，一定要明确 dp 数组的含义。对于两个字符串的动态规划问题，套路是通用的。 比如说对于字符串 s1 和 s2，一般来说都要构造一个这样的 DP table：  为了方便理解此表，暂时认为索引是从 1 开始的，待会的代码中只要稍作调整即可。其中，dp[i][j] 的含义是：对于 s1[1..i] 和 s2[1..j]，它们的 LCS 长度是 dp[i][j]。 比">
+<meta name="twitter:description" content="1143.最长公共子序列 第一步，一定要明确 dp 数组的含义。对于两个字符串的动态规划问题，套路是通用的。 比如说对于字符串 s1 和 s2，一般来说都要构造一个这样的 DP table：  为了方便理解此表，暂时认为索引是从 1 开始的，待会的代码中只要稍作调整即可。其中，dp[i][j] 的含义是：对于 s1[1..i] 和 s2[1..j]，它们的 LCS 长度是 dp[i][j]。 比如">
 <meta name="twitter:image" content="http://justdoitlee.github.io/img/zuichanggonggongzixulie.png">
 
 
@@ -399,7 +399,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  887
+                  851
                 </span>
               
 
@@ -446,7 +446,8 @@
 <p>让索引为 0 的行和列表示空串，<code>dp[0][..]</code> 和 <code>dp[..][0]</code> 都应该初始化为 0，这就是 base case。</p>
 <p>比如说，按照刚才 dp 数组的定义，<code>dp[0][3]=0</code> 的含义是：对于字符串 <code>&quot;&quot;</code> 和 <code>&quot;bab&quot;</code>，其 LCS 的长度为 0。因为有一个字符串是空串，它们的最长公共子序列的长度显然应该是 0。</p>
 <p><strong>第三步，找状态转移方程。</strong></p>
-<p>这是动态规划最难的一步，不过好在这种字符串问题的套路都差不多，权且借这道题来聊聊处理这类问题的思路。</p>
+<p>这是动态规划最难的一步</p>
+<a id="more"></a>
 <p>状态转移说简单些就是做选择，比如说这个问题，是求 <code>s1</code> 和 <code>s2</code> 的最长公共子序列，不妨称这个子序列为 <code>lcs</code>。那么对于 <code>s1</code> 和 <code>s2</code> 中的每个字符，有什么选择？很简单，两种选择，要么在 <code>lcs</code> 中，要么不在。</p>
 <p><img src="/img/zuichanggonggongzixulie2.png"></p>
 <p>这个「在」和「不在」就是选择，关键是，应该如何选择呢？这个需要动点脑筋：如果某个字符应该在 <code>lcs</code> 中，那么这个字符肯定同时存在于 <code>s1</code> 和 <code>s2</code> 中，因为 <code>lcs</code> 是最长<strong>公共</strong>子序列嘛。所以本题的思路是这样：</p>
@@ -502,7 +503,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>更新时间：</strong>
-    <a>2020年09月27日 - 14:09</a>
+    <a>2020年09月29日 - 15:09</a>
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
@@ -543,6 +544,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/09/29/子序列问题/" rel="prev" title="子序列问题">
+                子序列问题 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -612,7 +617,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">75</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -710,7 +715,7 @@
 </div>
 <div class="theme-info" style="margin-left:20%">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共127.5k字</span>&nbsp&nbsp
+  <span class="post-count">博客全站共128.2k字</span>&nbsp&nbsp
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp
 您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
