@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>贪心算法</title>
+    <url>/2020/12/10/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p><a href="https://leetcode.com/problems/non-overlapping-intervals/" target="_blank" rel="noopener">435. 无重叠区间</a></p>
+<p>什么是贪心算法呢？贪心算法可以认为是动态规划算法的一个特例，相比动态规划，使用贪心算法需要满足更多的条件（贪心选择性质），但是效率比动态规划要高。</p>
+<p>比如说一个算法问题使用暴力解法需要指数级时间，如果能使用动态规划消除重叠子问题，就可以降到多项式级别的时间，如果满足贪心选择性质，那么可以进一步降低时间复杂度，达到线性级别的。</p>
+<p>什么是贪心选择性质呢，简单说就是：每一步都做出一个局部最优的选择，最终的结果就是全局最优。注意哦，这是一种特殊性质，其实只有一部分问题拥有这个性质。</p>
+<p>比如你面前放着 100 张人民币，你只能拿十张，怎么才能拿最多的面额？显然每次选择剩下钞票中面值最大的一张，最后你的选择一定是最优的。</p>
+<p>然而，大部分问题明显不具有贪心选择性质。比如打斗地主，对手出对三，按照贪心策略，你应该出尽可能小的牌刚好压制住对方，但现实情况甚至可能会出王炸，这种情况就不能用贪心算法，而得使用动态规划解决。</p>
+<h4 id="一、问题概述"><a href="#一、问题概述" class="headerlink" title="一、问题概述"></a>一、问题概述</h4><p>经典的贪心算法问题 Interval Scheduling（区间调度问题）。</p>
+<p>给你很多形如 <code>[start, end]</code> 的闭区间，<strong>算出这些区间中最多有几个互不相交的区间</strong>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">intervalSchedule</span><span class="params">(<span class="keyword">int</span>[][] intvs)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>举个例子，<code>intvs = [[1,3], [2,4], [3,6]]</code>，这些区间最多有 2 个区间互不相交，即 <code>[[1,3], [3,6]]</code>，你的算法应该返回 2。注意边界相同并不算相交。</p>
+<p>这个问题在生活中的应用广泛，比如你今天有好几个活动，每个活动都可以用区间 <code>[start, end]</code> 表示开始和结束的时间，请问你今天<strong>最多能参加几个活动呢？</strong>显然你一个人不能同时参加两个活动，所以说这个问题就是求这些时间区间的最大不相交子集。</p>
+<a id="more"></a>
+<h4 id="二、贪心解法"><a href="#二、贪心解法" class="headerlink" title="二、贪心解法"></a>二、贪心解法</h4><p>这个问题有许多看起来不错的贪心思路，却都不能得到正确答案。比如说：</p>
+<p>也许可以每次选择可选区间中开始最早的那个？但是可能存在某些区间开始很早，但是很长，使得错误地错过了一些短的区间。或者每次选择可选区间中最短的那个？或者选择出现冲突最少的那个区间？这些方案都能很容易举出反例，不是正确的方案。</p>
+<p>正确的思路其实很简单，可以分为以下三步：</p>
+<ol>
+<li>从区间集合 intvs 中选择一个区间 x，这个 x 是在当前所有区间中<strong>结束最早的</strong>（end 最小）。</li>
+<li>把所有与 x 区间相交的区间从区间集合 intvs 中删除。</li>
+<li>重复步骤 1 和 2，直到 intvs 为空为止。之前选出的那些 x 就是最大不相交子集。</li>
+</ol>
+<p>把这个思路实现成算法的话，可以按每个区间的 <code>end</code> 数值<strong>升序排序</strong>，因为这样处理之后实现步骤 1 和步骤 2 都方便很多。</p>
+<p>对于步骤 1，由于预先按照 <code>end</code> 排了序，所以选择 x 是很容易的。关键在于，如何去除与 x 相交的区间，选择下一轮循环的 x 呢？</p>
+<p><strong>由于事先排了序</strong>，不难发现所有与 x 相交的区间必然会与 x 的 <code>end</code> 相交；如果一个区间不想与 x 的 <code>end</code> 相交，它的 <code>start</code> 必须要大于（或等于）x 的 <code>end</code>：</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> intervalSchedule(<span class="keyword">int</span>[][] intvs) &#123;</span><br><span class="line">    <span class="keyword">if</span> (intvs.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 按 end 升序排序</span></span><br><span class="line">    Arrays.<span class="keyword">sort</span>(intvs, <span class="keyword">new</span> Comparator&lt;<span class="keyword">int</span>[]&gt;() &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> compare(<span class="keyword">int</span>[] a, <span class="keyword">int</span>[] b) &#123;</span><br><span class="line">            <span class="keyword">return</span> a[<span class="number">1</span>] - b[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 至少有一个区间不相交</span></span><br><span class="line">    <span class="keyword">int</span> <span class="keyword">count</span> = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 排序后，第一个区间就是 x</span></span><br><span class="line">    <span class="keyword">int</span> x_end = intvs[<span class="number">0</span>][<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span>[] interval : intvs) &#123;</span><br><span class="line">        <span class="keyword">int</span> start = interval[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">if</span> (start &gt;= x_end) &#123;</span><br><span class="line">            <span class="comment">// 找到下一个选择的区间了</span></span><br><span class="line">            <span class="keyword">count</span>++;</span><br><span class="line">            x_end = interval[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">count</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>四键键盘</title>
     <url>/2020/10/29/%E5%9B%9B%E9%94%AE%E9%94%AE%E7%9B%98/</url>
     <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p><a href="https://leetcode.com/problems/4-keys-keyboard" target="_blank" rel="noopener">651.四键键盘</a></p>
